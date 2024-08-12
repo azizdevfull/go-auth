@@ -29,7 +29,10 @@ func (ctrl *AuthController) Register(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"message": "User registered"})
+	c.JSON(http.StatusOK, gin.H{"message": "User registered", "user": gin.H{
+		"username": input.Username,
+	},
+	})
 }
 
 func (ctrl *AuthController) Login(c *gin.Context) {
